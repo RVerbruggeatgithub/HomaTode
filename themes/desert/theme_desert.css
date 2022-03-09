@@ -1,0 +1,62 @@
+	.desert_body {
+		background: url(background.png);
+		/*background-size:contain;*/
+		background-repeat: repeat;
+	}
+	
+	.desert_platform {
+		background: url(platform.png);
+		/*background-size:contain;*/
+		background-repeat: repeat;
+	}
+
+	.desert_platform_tl {
+
+		background: url(border_top_left.png);
+		background-size:contain;
+	}
+
+	.desert_platform_t {
+
+		background: url(border_top.png);
+		background-size:contain;
+	}
+
+	.desert_platform_tr {
+
+		background: url(border_top_right.png);
+		background-size:contain;
+	}
+
+	.desert_platform_r {
+
+		background: url(border_right.png);
+		background-size:contain;
+	}
+
+	.desert_platform_l {
+
+ background-repeat: repeat-y;
+		background: url(border_left.png);
+		background-size:contain;
+	}
+
+	.desert_platform_bl {
+
+		background: url(border_bottom_left.png);
+		background-size:contain;
+	}
+
+	.desert_platform_b {
+
+		background: url(border_bottom.png);
+		background-size:contain;
+	}
+
+	.desert_platform_br {
+		background-position: left top;
+
+
+		background: url(border_bottom_right.png);
+		background-size:contain;
+	}	
