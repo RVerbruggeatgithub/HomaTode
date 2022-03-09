@@ -1,0 +1,391 @@
+<html>
+	<head>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+
+		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+		<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+		<script src="game/ddSlick.js"></script>
+		<link rel="stylesheet" href="style/gui.css" />
+		<link rel="stylesheet" href="style/game.css" />
+		<link rel="stylesheet" href="style/menu.css" />
+		<link rel="stylesheet" href="themes/desert/theme_desert.css"/>
+		<link rel="stylesheet" href="themes/space/theme_space.css"/>
+		<script src="game/towers.js"></script>
+		<script src="game/towers_flamethrower.js"></script>
+		<script src="game/towers_lasertower.js"></script>
+		<script src="game/towers_minigun.js"></script>
+		<script src="game/towers_photontower.js"></script>
+		<script src="game/towers_rockettower.js"></script>
+		<script src="game/towers_cannon.js"></script>
+		<script src="game/towers_sonic.js"></script>
+		<script src="game/weapons.js"></script>
+		<script src="game/weapons_bullets.js"></script>
+		<script src="game/weapons_rockets.js"></script>
+		<script src="game/weapons_projectiles.js"></script>
+		<script src="game/weapons_sonicwave.js"></script>
+		<script src="game/weapons_flames.js"></script>
+		<script src="game/gui.js"></script>
+		<script src="game/game.js"></script>
+		<script src="game/animation.js"></script>
+		<script src="game/inputcontroller.js"></script>
+		<script src="game/enemies.js"></script>
+		<script src="game/enemies_azaries.js"></script>
+		<script src="game/enemies_darloki.js"></script>
+		<script src="game/enemies_earanours.js"></script>
+		<script src="game/enemies_gurhabs.js"></script>
+		<script src="game/enemies_valcheraks.js"></script>
+		<script src="game/enemies_tharaks.js"></script>
+		<script src="game/enemies_neblins.js"></script>
+		<script src="game/enemies_taxi.js"></script>
+		<script src="game/enemies_rasmori.js"></script>
+		<script src="game/enemies_vandante.js"></script>
+		<script src="game/levels_unlimited.js"></script>
+		<script src="game/levels_scenarios.js"></script>
+		<script src="game/structure_ResearchFacility.js"></script>
+		<script type="text/javascript">
+/*
+		var test_arr = new Map([
+					['A', {'height': 15, 'width': 10, 'towertype' : 'CannonTower'}], 	
+				]);
+				
+		use:   var my_A = test_arr.get("A")
+				 get_tower(my_A.towertype)
+*/
+		var debug = false;
+		var research_level = 0;
+		var max_research_level = 25;
+		var enemies_increased_damage_recieved_percentage = 0;
+		var cash_bonus_percentage = 0;
+		var level_6_tower = false;
+		var cannontower_bonus_damage = 0;
+		var cannontower_bonus_splash_damage = 0;
+		var wavetimers = []
+		var theme = "space"
+		var start_lives = 25;
+		var config_startcash = 1200;
+		var runtime = 15;
+		var enable_travel_path = false;
+		var valid_enemy_types = null;		
+		var units = [];	
+		var towers= [];
+		var tower_type = null;
+		var myTower = null
+		var Banked = 1200;
+		var lives = 25;
+		var level = 0;
+		var level_wave = 0;
+		var tower_icon_follower_size = 50;
+		var rungame = false;
+		var pause_game = false;
+		var level_start_location = null;
+		var level_max_wave = null
+		var global_pause = false
+		var waves_process = 0;
+		var total_enemy_count = 0;
+		var enemies_killed = 0;
+		var enemies_passed = 0;
+		var enemies_removed = 0;
+		var time_between_waves = 30; //time before next wave runs in seconds, for unlimited mode only.
+		var enemytypes = {
+			"Azaries" : new Azaries(),
+			"Darloki" : new Darloki(),
+			"Earanours" : new Earanours(),
+			"Valcheraks" : new Valcheraks(),
+			"Gurhabs" : new Gurhabs(),
+			"Tharak" : new Tharak(),
+			"Neblins" : new Neblins(),
+			"Vandante" : new Vandante()
+		}
+
+
+document.addEventListener("visibilitychange", function() {
+  
+	if(document.hidden || document.visibilityState == "hidden"){
+		pause_game = true;
+		console.log("lost focus, pausing..")
+		console.log(document.visibilityState);
+		
+		
+	}
+
+});
+
+	
+
+
+$(function () {
+	$("#pause").hide();
+	$(".menu_bar").hide()
+	var ddData = get_available_maps(unlimited_levels)
+	$('#map_select').ddslick({
+		data:ddData,
+		width:300,
+		selectText: "Select Map",
+		imagePosition:"right",
+		onSelected: function(selectedData){
+			//callback function: do something with selectedData;
+			unlimited_level = unlimited_levels[selectedData.selectedIndex]
+			theme = unlimited_level.theme;
+		}   
+	});
+
+	showNav();
+	theme_body = theme+"_body"; 
+	$('body').addClass(theme_body)
+		
+});
+			</script>
+				
+		</head>
+	<body oncontextmenu="return false;">
+	<div id="output"></div>
+	
+		<span style="font-size:30px;cursor:pointer" onclick="showNav()">&#9776; Menu</span>
+			<div class="gme">
+
+
+				<div id="range" class="follower" style="display: block"></div>
+			</div>
+			<div class="outer">
+			<div class='new-menu'>
+			  <div class='new-menu-inner'>
+
+				<ul>
+				
+				
+								<li tower_type="MinigunTower" class="menu_item">
+									<div style="background: url(images/minigun_turret.png); height: 25px; width: 60px; margin-left: auto; margin-right: auto""></div>
+									MinigunTower <br />
+									$50
+								</li>
+								
+								<li tower_type="RocketTower" class="menu_item">
+									<div style="background: url(images/rocket_turret.png); height: 25px; width: 60px; margin-left: auto; margin-right: auto""></div>
+									RocketTower<br />
+									$90
+								</li>
+								<li tower_type="LaserTower" class="menu_item">
+									<div style="background: url(images/laser_turret.png); height: 25px; width: 60px; margin-left: auto; margin-right: auto""></div>
+									LaserTower<br />
+									$150
+								</li>
+								<li tower_type="FlamethrowerTower" class="menu_item">
+									<div style="background: url(images/flamethrower_turret.png) -225px -1px; height: 25px; width: 50px; margin-left: auto; margin-right: auto"></div>
+									Flamethrower<br />
+									$120
+								</li>
+								<!-- 
+								<li tower_type="PhotonTower" class="menu_item">
+									<div style="background: url(images/photon_turret.png) -225px -1px; height: 25px; width: 50px; margin-left: auto; margin-right: auto"></div>
+									PhotonTower<br />
+									$350
+								</li>
+								-->
+								<li tower_type="CannonTower" class="menu_item">
+									<div style="background: url(images/cannon_turret.png) -225px -1px; height: 25px; width: 50px; margin-left: auto; margin-right: auto"></div>
+									CannonTower<br />
+									$90
+								</li>
+								<li tower_type="SonicTower" class="menu_item">
+									<div style="background: url(images/sonic_turret.png) -225px -1px; height: 25px; width: 50px; margin-left: auto; margin-right: auto"></div>
+									SonicTower<br />
+									$90
+								</li>
+								<li tower_type="ResearchFacility" class="menu_item">
+									<div style="background: url(images/research_station.png) -225px -1px; height: 25px; width: 50px; margin-left: auto; margin-right: auto"></div>
+									Research Facility<br />
+									$1000
+								</li>
+								
+								
+								
+								
+									
+
+								
+					</ul>
+					<p style="bottom: 0px; position: absolute">
+									
+								
+									<span ><button id="start_level" class="btn_start_continue"></button><button id="pause" class="btn_pause"></button></span><br />
+									
+									
+									Lives:<span id="lives"></span><br />
+								
+									Cash: $<span id="cash">0</span><br />
+									
+									Wave:<span id="waves"></span><br />
+								
+									Kills: <span id="kills">0</span><br />
+									
+									Timer: <span id="wavetimer">0</span><br />
+					</p>
+			  </div>
+			</div>
+			
+		<div id="tower_menu" class="modal">
+
+		  <!-- Modal content -->
+		  <div class="modal_content">
+			<span class="close float_right">&times;</span><button class="action_button float_right" id="upgrade">⮉</button><button class="action_button float_right" id="sell">＄</button>
+			<span class="modal_details"></span>
+
+			
+		  </div>
+
+		</div>
+		
+		<div id="research_menu" class="modal" style="height: 650px; width: 800px; position: relative; margin-left: auto; margin-right: auto">
+
+		  <!-- Modal content -->
+		  <div class="modal_content" style="height: 650px; width: 800px; position: relative; margin-left: auto; margin-right: auto">
+			<h1>Research progress <span class="close float_right" id="close_research_menu" style="position: relative; top: -25px">&times;</span></h1><p>Each subsequent research branch requires the previous branch to be completed. % do not compound and based on base damage.</p>
+			<span class="">
+				<div class="scrollmenu">
+				<div id="level0" style="width:125px; display: inline-block;padding: 14px; height: 1px;  position: relative;" research_branch="1"></div>
+					<span id="level1" class="research_option" research_branch="1"><h2>Piercing Shells</h2><p>Enemies take +2% more damage.  <br />Completing this branch will grant an additional +3% more damage.<br />$50<div id="branch_1" class="avail">0/5</p></div></span>
+					<span id="level2" class="research_option" research_branch="2"><h2>Improved refinery</h2><p>+4% more money from kills. <br />Completing this branch will grant an additional +5% more money from kills.<br />$100<div id="branch_2">0/5</p></div></span>
+					<span id="level3" class="research_option" research_branch="3"><h2>Omionatic Scope</h2><p>Enemies take +2% more damage.  <br />Completing this branch will grant an additional +5% more damage.<br />$150<div id="branch_3">0/5</p></div></span>
+					<span id="level4" class="research_option" research_branch="4"><h2>Advanced refinery</h2><p>+4% more money from kills. <br />Completing this branch will unlock level 6 RocketTower, MinigunTower and LaserTower.<br />$200</p><div id="branch_4">0/5</div></span>
+					<span id="level5" class="research_option" research_branch="5"><h2>Torson Spheres</h2><p>Enemies take +3% more damage. <br />Completing this branch will grant +50% damage to Cannon Towers.<br />$250</p><div id="branch_5">0/5</div></span>
+					<div id="level0" style="width:125px; display: inline-block;padding: 14px; height: 1px;  position: relative;" research_branch="1"></div>
+					<div class="progress-container">  
+						<div class="progress" id="progress"></div>  
+						<div class="progress_circle">1</div>  
+						<div class="progress_circle">2</div>  
+						<div class="progress_circle">3</div>  
+						<div class="progress_circle">4</div>  
+						<div class="progress_circle">5</div>  
+					</div>
+				</div>
+	
+			</span>
+
+			
+		  </div>
+
+		</div>
+		<div id="myNav" class="overlay">
+			<a href="javascript:void(0)" class="closebtn" onclick="hideNav()">&times;</a>
+			<div class="overlay-content">
+				<h1>Home Made Tower Defense - Homatode</h1>
+				<div id="m1" class="nav_option">
+				  <h2> </h2>
+				  <p>
+					  <div><button class="action_button" onclick="newGame()">New Mission</button></div>
+					  <div><button class="action_button" onclick="openNav('unlim')">New Unlimited Game</button></div>
+					  <div><button class="action_button" onclick="openNav('m2')">Options</button></div>
+					  <div><button class="action_button" onclick="openNav('m3')">Help</button></div>
+					  <div><button class="action_button" onclick="openNav('logs'),loadLogs('clogs')">Change Logs</button></div>
+				  </p>
+
+				</div>
+
+				<div id="unlim" class="nav_option" style="display:none">
+				  <h2>New Unlimited Game - Options</h2>
+				  <p><button class="action_button" onclick="openNav('m1')">Main Menu</button></p>
+				  <p style="margin-left: auto; margin-right: auto; width: 800px">
+					<table>
+						<tr>
+							<th style="width: 30%">Option</th><th style="width: 20%">Setting</th><th style="width: 50%">Comment</th>
+						</tr>
+						<tr>
+							<td>Select Map</td><td><select name="map_select" id="map_select"></select></td><td></td>
+						</tr>
+						<tr>
+							<td>Adjust time between wave</td>
+							<td>
+								<div class="slidecontainer">
+									<input type="range" min="5" max="100" value="30" class="slider" data-after="30" id="config_wave_timer">
+								</div>
+							</td>
+							<td>Default: 30 (Min: 5, Max: 100) ; Warning, changing this to too low may cause serious slow down. Applies after current wave is done.</td>
+						</tr>
+						<tr>
+							<td>Starting lives:</td>
+							<td>
+								<div class="slidecontainer">
+									<input type="range" min="1" max="50" value="25" class="slider" data-after="25" id="config_lives">
+								</div>
+							</td>
+							<td>Default: 25 (Min: 1, Max: 50); Only applies before creating a new unlimited game.</td>
+						</tr>
+						
+						<tr>
+							<td>Runtime:</td>
+							<td>
+								<div class="slidecontainer">
+									<input type="range" min="5" max="30" value="15" class="slider" data-after="15" id="config_runtime">
+								</div>
+							</td>
+							<td>Default: 15 (Min: 5, Max: 30); Time in minutes.</td>
+						</tr>
+	
+						<tr>
+							<td>Starting cash:</td>
+							<td>
+								<div class="slidecontainer">
+									<input type="range" min="750" max="5000" value="1200" class="slider" data-after="1200" id="config_startcash">
+								</div>
+							</td>
+							<td>Default: 1200 (Min: 750, Max: 5000); Time in minutes.</td>
+						</tr>
+				
+					</table>
+				  </p>
+				  				  <p>
+					<button onclick="newU_Game()" class="btn_start_continue"></button>
+				  </p>
+				  
+				</div>
+				
+				
+				<div id="m2" class="nav_option" style="display:none">
+				  <h2>Options</h2>
+				  <p style="margin-left: auto; margin-right: auto; width: 800px">
+					<table>
+						<tr>
+							<th style="width: 30%">Option</th><th style="width: 20%">Setting</th><th style="width: 50%">Comment</th>
+						</tr>
+						<tr>
+							<td>Show Path</td><td><input id="show_path" type="checkbox"></td><td>Show enemy travel path.</td>
+						</tr>
+						<tr>
+							<td>Enable Debug</td><td><input id="debug" type="checkbox"></td><td>Applies only before starting a new game.</td>
+						</tr>				
+					</table>
+				  </p>
+				  <p><button class="action_button" onclick="openNav('m1')">Main Menu</button></p>
+				</div>
+				
+				<div id="logs" class="nav_option" style="display:none">
+				  <h2>Change Logs</h2>
+				  <div id="clogs"></div>
+				  <p><button class="action_button" onclick="openNav('m1')">Main Menu</button></p>
+				</div>
+
+				<div id="m3" class="nav_option" style="display:none">
+				  <h2>Help</h2>
+				  <div id="help_details"></div>
+				  <p><button class="action_button" onclick="openNav('m1')">Main Menu</button></p>
+				</div>
+				
+				<div id="m0" class="nav_option" style="display:none">
+				  <h2>Loading...</h2>
+				  <p><img src="images/loading.gif"/></p>
+				</div>
+				
+				<div id="mStats" class="nav_option" style="display:none">
+				  <h2>Stats:</h2>
+				  <div id="stats"></div>
+				  <p><button class="action_button" id="continue" onclick="nextLevel()">Continue</button></p>
+				  <p><button class="action_button" onclick="openNav('m1')">Exit</button></p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+
+

@@ -1,0 +1,47 @@
+----Changelogs v Alpha 1.6----
+- Added research branches which can be access after building a research facility.
+- Cleaned up some unused functions.
+
+----Changelogs v Alpha 1.5----
+- Added theme; css file and images to go into the theme/theme_name folder. Modified levels to include 'theme' parameter
+
+----Changelogs v Alpha 1.41----
+- Fix: Sonictower
+
+----Changelogs v Alpha 1.4----
+- Added pause function
+- Adjust: speed up minigun projectiles 20 -> 25
+
+
+----Changelogs v Alpha 1.31----
+- Tower idle timer is now tied to game timer instead of individual timers.
+- Added Draw path
+- Added map selector
+- Fix: Regular Missions game was broken due to the change-over to Animate().
+
+
+----Changelogs v Alpha 1.3----
+- Fixed projectile stun (lvl 5 CannonTower), two consequtive hits from tower caused the temporary freeze to turn permanent.
+- Added new tower:  Sonicwave tower. Fires waves that damages all enemies in its path and Ignores target armor.
+- Added option to adjust time between waves.
+- Added option to enable debug
+- Added additional options for Unlimited game mode, to be configured before starting.
+
+----Changelogs v Alpha 1.2----
+- Adjust: Moved weapons into its own class and extending it for other projectile weapons.
+- Start of recording changelogs
+
+
+
+---Needs fixing---
+- target adjust to center of target.
+- Photondeaccelerator is broken (disabled)
+- GUI issues such as playing unlimited first then new mission, the continue button will be missing.
+- Tower placement: left top corner can overlap if the other 3 sections are free.
+- Tower placement: if moved quick enough, towers can be placed on only 2 sections (overlap or hovering over areas that should not be buildable on.)
+- Pausing via unfocussing the window before a group of enemies is spawned breaks the spawn cycle.
+
+---future ideas..---
+
+
+
