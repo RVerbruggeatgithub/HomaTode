@@ -1,0 +1,508 @@
+	.concrete_tile {
+		display: block;
+		position:absolute;
+		background: url(../images/concrete_slab_large.png) 0px 0px;
+	}
+	
+	.tower_base {
+		display: block;
+		position:absolute;
+		background: url(../images/turret-sprites_large.png) 0px 0px;
+	}
+	
+	.tower_base_2 {
+		display: block;
+		position:absolute;
+		
+		background: url(../images/turret-sprites_large.png) -225px -1px;
+	}
+	
+	.tower_minigun_1 {
+		background: url(../images/turret-sprites_large.png) -400px -1px;
+	}
+	
+	.tower_minigun_2 {
+		background: url(../images/turret-sprites_large.png) -400px -51px;
+	}
+
+	.tower_minigun_3 {
+		background: url(../images/turret-sprites_large.png) -400px -101px;
+	}
+	
+				
+	.tower_minigun_4 {
+		background: url(../images/turret-sprites_large.png) -400px -151px;
+	}
+	
+				
+	.tower_minigun_5 {
+		background: url(../images/turret-sprites_large.png) -400px -201px;
+	}
+	
+	.tower_minigun_6 {
+		background: url(../images/turret-sprites_large.png) -400px -251px;
+	}
+	
+	.tower_rocket_1 {
+		background: url(../images/turret-sprites_large.png) -350px -1px;
+	}
+	
+	.tower_rocket_2 {
+		background: url(../images/turret-sprites_large.png) -350px -51px;
+	}
+
+	.tower_rocket_3 {
+		background: url(../images/turret-sprites_large.png) -350px -101px;
+	}
+	
+				
+	.tower_rocket_4 {
+		background: url(../images/turret-sprites_large.png) -350px -151px;
+	}
+	
+				
+	.tower_rocket_5 {
+		background: url(../images/turret-sprites_large.png) -350px -201px;
+	}
+	
+	.tower_rocket_6 {
+		background: url(../images/turret-sprites_large.png) -350px -251px;
+	}
+	
+	.tower_laser_1 {
+		background: url(../images/turret-sprites_large.png) -300px -1px;
+	}
+	
+	.tower_laser_2 {
+		background: url(../images/turret-sprites_large.png) -300px -51px;
+	}
+
+	.tower_laser_3 {
+		background: url(../images/turret-sprites_large.png) -300px -101px;
+	}
+	
+				
+	.tower_laser_4 {
+		background: url(../images/turret-sprites_large.png) -300px -151px;
+	}
+	
+				
+	.tower_laser_5 {
+		background: url(../images/turret-sprites_large.png) -300px -201px;
+	}
+	
+	.tower_laser_6 {
+		background: url(../images/turret-sprites_large.png) -300px -251px;
+	}
+	
+
+	.tower_flamethrower_1 {
+		background: url(../images/turret-sprites_large.png) -450px -1px;
+	}
+	
+	.tower_flamethrower_2 {
+		background: url(../images/turret-sprites_large.png) -450px -51px;
+	}
+
+	.tower_flamethrower_3 {
+		background: url(../images/turret-sprites_large.png) -450px -101px;
+	}
+	
+				
+	.tower_flamethrower_4 {
+		background: url(../images/turret-sprites_large.png) -450px -151px;
+	}
+	
+				
+	.tower_flamethrower_5 {
+		background: url(../images/turret-sprites_large.png) -450px -201px;
+	}
+	
+	.tower_cannon_1 {
+		background: url(../images/turret-sprites_large.png) -175px -1px;
+	}
+	
+	.tower_cannon_2 {
+		background: url(../images/turret-sprites_large.png) -175px -51px;
+	}
+
+	.tower_cannon_3 {
+		background: url(../images/turret-sprites_large.png) -175px -101px;
+	}
+	
+				
+	.tower_cannon_4 {
+		background: url(../images/turret-sprites_large.png) -175px -151px;
+	}
+	
+				
+	.tower_cannon_5 {
+		background: url(../images/turret-sprites_large.png) -175px -201px;
+	}
+	
+	.tower_sonic_1 {
+		background: url(../images/turret-sprites_large.png) -125px -1px;
+		pointer-events : none;
+	}
+	
+	.tower_sonic_2 {
+		background: url(../images/turret-sprites_large.png) -125px -51px;
+		pointer-events : none;
+	}
+	
+	
+	.tower_sonic_3 {
+		background: url(../images/turret-sprites_large.png) -125px -101px;
+		pointer-events : none;
+	}
+	
+	.tower_sonic_4 {
+		background: url(../images/turret-sprites_large.png) -125px -151px;
+		pointer-events : none;
+	}
+	
+	.tower_sonic_5 {
+		background: url(../images/turret-sprites_large.png) -125px -201px;
+		pointer-events : none;
+	}
+	
+	.structure_research_facility_1 {
+		background: url(../images/turret-sprites_large.png) -225px -76px;
+		pointer-events : none;
+	}
+	
+	.tower_photontower_1 {
+		position: absolute;
+		height: 2px;
+		width: 2px;
+		border-radius: 50%;
+		background-color: white;
+		box-shadow:
+		0 0 2px 3px #fff,  /* inner white */
+		0 0 3px 4px #0ff; /* outer cyan */
+	}
+	
+	.tower_photontower_2 {
+		position: absolute;
+		height: 2px;
+		width: 2px;
+		border-radius: 50%;
+		background-color: white;
+		box-shadow:
+		0 0 3px 4px #fff,  /* inner white */
+		0 0 4px 5px #0ff; /* outer cyan */
+	}
+
+	.tower_photontower_3 {
+		position: absolute;
+		height: 3px;
+		width: 3px;
+		border-radius: 50%;
+		background-color: white;
+		box-shadow:
+		0 0 3px 4px #fff,  /* inner white */
+		0 0 4px 5px #0ff; /* outer cyan */
+	}
+	
+				
+	.tower_photontower_4 {
+		position: absolute;
+		height: 3px;
+		width: 3px;
+		border-radius: 50%;
+		background-color: white;
+		box-shadow:
+		0 0 4px 5px #fff,  /* inner white */
+		0 0 5px 6px #0ff; /* outer cyan */;
+	}
+	
+				
+	.tower_photontower_5 {
+		position: absolute;
+		height: 4px;
+		width: 4px;
+		border-radius: 50%;
+		background-color: white;
+		box-shadow:
+		0 0 4px 5px #fff,  /* inner white */
+		0 0 5px 7px #0ff; /* outer cyan */
+	}
+
+	.circle {
+		display: block;
+		width: 150px;
+		height: 150px;
+		background: red;
+		opacity: 0.2;
+		border-radius: 50%;
+		position: absolute;
+	}
+	
+	.Bullet_1 {
+		position: absolute;
+		left: 0px;
+		top: 0px;
+		width:10px;
+		height:10px;
+		border-radius: 2px;
+		height: 3px;
+		width: 3px;
+		z-index: 9;
+		background: radial-gradient(circle, rgba(214,214,214,1) 0%, rgba(0,0,0,1) 62%);
+	}
+	
+	.Highlight_Tower {
+		border: 1px solid #09ff00; 
+		outline: 1px solid black;
+		color: 	#09ff00;
+		box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+	}
+	
+
+	
+	.Flame_1 {
+		position: absolute;
+		left: 0px;
+		top: 0px;
+		width:25px;
+		height:25px;
+		z-index: 9;
+		background: url(../images/flame.png);
+	}
+	
+	.Orb_1 {
+		position: absolute;
+		height: 3px;
+		width: 3px;
+		border-radius: 50%;
+		background-color: white;
+		box-shadow:
+		0 0 4px 5px #fff,  /* inner white */
+		0 0 5px 6px #0ff; /* outer cyan */
+	}
+	
+	.Orb_2 {
+		position: absolute;
+		height: 1px;
+		width: 14px;
+		border-radius: 10%;
+		background-color: white;
+		box-shadow:
+		0 0 1px 1px #fff,  /* inner white */
+		0 0 2px 2px magenta; /* outer cyan */
+	}
+	
+	.Rocket_1 {
+		position: absolute;
+		left: 0px;
+		top: 0px;
+		width:18px;
+		height:7px;
+		z-index: 9;
+		background: url(../images/rocket_sm.png);
+	}
+	
+	.Sonicwave_1 {
+		 position: absolute;
+		  margin: auto;
+		  
+		  width: 50px;
+		  height: 50px;
+		  background: url(../images/distort.gif);
+		  background-color: transparent;
+		  border-radius: 50%;
+		  box-shadow: 2px 0px 0px 0px white; 
+/* box-shadow: 2px 2px 0px 0px white; 
+*/
+
+	}
+	
+
+	
+	.Explosion_1 {
+		position: absolute;
+		width:25px;
+		height:25px;
+		z-index: 9;
+	}
+	
+	.shockwave {
+		pointer-events : none;
+		width: 250px;
+		height: 250px;
+		margin: 20px auto;
+		background:
+		radial-gradient(
+		  transparent 21%, rgba(233,233,246, .8) 21%,
+		  rgba(233,233,246, .8) 22%,transparent 28%),
+		radial-gradient(
+		  transparent 36%,rgba(233,233,246, .8) 40%,
+		  rgba(233,233,246, .8) 42%,transparent 50%),
+		radial-gradient(
+		  transparent 60%,rgba(233,233,246, .8) 65%,
+		  rgba(233,233,246, .8) 66%,transparent 70%);
+		background-size:0 0,0 0,0 0;
+		background-position:center;
+		background-repeat:no-repeat;
+		animation:shackwaves 5s linear infinite;
+		}
+		
+	@keyframes shackwaves{
+		0% {
+			background-size:0 0,0 0,0 0;
+		}
+		25% {
+			background-size:0 0,0 0,30% 30%;
+		}
+		50% {
+			background-size:10% 10%,40% 40%,60% 60%;
+		}
+		75% {
+			background-size:100% 100%,100% 100%,100% 100%;
+		}
+		100% {
+			background-size:100% 100%,100% 100%,100% 100%;
+		}
+	}
+
+	.blackhole {
+		animation: blackhole_spin 2s infinite linear;
+	}
+
+	@keyframes blackhole_spin {
+		from {
+		transform: rotate(0deg);
+		}
+		to {
+		transform: rotate(359deg);
+		}
+	}
+
+
+	.alien_1 {
+		animation: alien1_jumps 2s infinite linear;
+	}
+
+	@keyframes alien1_jumps {
+		from {
+		transform: rotate(0deg);
+		}
+		to {
+		transform: rotate(359deg);
+		}
+	}
+
+	
+	.hpbar_holder {
+		margin-top: 50px;
+		width: 100%;
+	}
+
+	.hp-bar {
+		margin-top: 2px;
+		margin-left: auto;
+		margin-right: auto;
+		width: 30px;
+		padding: 1px;
+		border: 1px solid #78AB46;
+	}
+
+	.hp-bar-fill {
+		display: block;
+		height: 3px;
+		background-color: #78AB46;
+		
+		
+		transition: width 500ms ease-in-out;
+	}
+
+
+	.platform {
+		background: url(../images/platform.png);
+		/*background-size:contain;*/
+		background-repeat: repeat;
+	}
+
+	.platform_tl {
+
+		background: url(../images/border_top_left.png);
+		background-size:contain;
+	}
+
+	.platform_t {
+
+		background: url(../images/border_top.png);
+		background-size:contain;
+	}
+
+	.platform_tr {
+
+		background: url(../images/border_top_right.png);
+		background-size:contain;
+	}
+
+	.platform_r {
+
+		background: url(../images/border_right.png);
+		background-size:contain;
+	}
+
+	.platform_l {
+
+ background-repeat: repeat-y;
+		background: url(../images/border_left.png);
+		background-size:contain;
+	}
+
+	.platform_bl {
+
+		background: url(../images/border_bottom_left.png);
+		background-size:contain;
+	}
+
+	.platform_b {
+
+		background: url(../images/border_bottom.png);
+		background-size:contain;
+	}
+
+	.platform_br {
+		background-position: left top;
+
+
+		background: url(../images/border_bottom_right.png);
+		background-size:contain;
+	}	
+
+	
+	
+	
+	.flow_right {
+		background-image: url(../images/chevron_lf.gif);
+				 -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  background-size: contain;
+	}
+	
+	.flow_left {
+		background-image: url(../images/chevron_lf.gif);
+		background-size: contain;
+
+	}
+	
+	.flow_down {
+		background-image: url(../images/chevron_ud.gif);
+		background-size: contain;
+		transform: scaleY(-1);
+			
+	}
+	
+	.flow_up {
+	
+		
+		background-image: url(../images/chevron_ud.gif);
+		background-size: contain;
+	}
+	
