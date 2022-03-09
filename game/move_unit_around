@@ -1,0 +1,44 @@
+var d = 30;
+document.getElementById("div1").style.transform = "rotate("+0+"deg)";
+
+
+var mx,my;
+$( "body" ).bind( "mousemove", function(event) {
+    mx = event.clientX;
+    my = event.clientY;
+});
+var div = document.getElementById("div1");
+$( "BODY" ).bind( "click", function(event) {
+   $('#div1').animate({ 
+       left: mx-32,
+       top:  my-32,
+   },300 + Math.random()*600)
+});
+setInterval(function(){
+    var dx = mx - div.offsetLeft-32;
+    var dy = my - div.offsetTop-32;
+    var v1 = {x: div.offsetLeft+32, y: div.offsetTop+32}, 
+        v2 = {x: mx, y: my};
+    var angleDeg = Math.atan2(v2.y - v1.y, v2.x - v1.x) * 180 / Math.PI ;
+    
+    div.style.transform = "rotate("+angleDeg+"deg)";
+    div.innerHTML = Number(angleDeg).toFixed(2);
+},30);
+
+
+
+Click the mouse somewhere.
+<div id="div1" class="div1">
+
+.div1{
+	border: 1px solid black;
+	width: 64px;
+	height: 64px;
+    margin: 0px;
+    left:50px;
+    top:50px;
+    position: absolute;
+    display: inile-block;
+    text-align:center;
+}
+BODY,HTML{width:100%;height:100%;a.padding:0px;margin:0px}
